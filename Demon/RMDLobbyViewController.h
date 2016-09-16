@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  RMDLobbyViewController.h
 //  Demon
 //
 //  Created by Rachel Dorn on 9/15/16.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
+@interface RMDLobbyViewController : UIViewController
 
 @end
-
