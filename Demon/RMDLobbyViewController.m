@@ -11,13 +11,26 @@
 
 @interface RMDLobbyViewController ()
 
+@property (nonatomic, strong)RMDLobbyView *lobbyView;
+
 @end
 
 @implementation RMDLobbyViewController
 
 - (void)viewDidLoad {
-    RMDLobbyView *lobbyView = [[RMDLobbyView alloc] init];
-    self.view = lobbyView;
+    self.lobbyView = [[RMDLobbyView alloc] init];
+    self.view = self.lobbyView;
+    
+    [self.lobbyView.hostButton addTarget:self action:@selector(hostAction) forControlEvents:UIControlEventTouchUpInside];
+    [self.lobbyView.joinButton addTarget:self action:@selector(joinAction) forControlEvents:UIControlEventTouchUpInside];
+}
+
+- (void)hostAction {
+    NSLog(@"host button clicked");
+}
+
+- (void)joinAction {
+    NSLog(@"join button clicked");
 }
 
 @end

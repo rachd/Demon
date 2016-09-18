@@ -30,6 +30,7 @@
         self.joinButton.layer.borderColor = [[UIColor whiteColor] CGColor];
         self.joinButton.layer.borderWidth = 4;
         self.joinButton.layer.cornerRadius = 12;
+//        self.joinButton addTarget: action:<#(nonnull SEL)#> forControlEvents:<#(UIControlEvents)#>
     
         UIStackView *buttonStack = [[UIStackView alloc] initWithArrangedSubviews:@[self.hostButton, self.joinButton]];
         buttonStack.axis = UILayoutConstraintAxisVertical;
