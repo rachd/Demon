@@ -8,6 +8,8 @@
 
 #import "RMDLobbyViewController.h"
 #import "RMDLobbyView.h"
+#import "RMDHostViewController.h"
+#import "RMDJoinViewController.h"
 
 @interface RMDLobbyViewController ()
 
@@ -26,11 +28,13 @@
 }
 
 - (void)hostAction {
-    NSLog(@"host button clicked");
+    RMDHostViewController *hostVC = [[RMDHostViewController alloc] init];
+    [self presentViewController:hostVC animated:YES completion:nil];
 }
 
 - (void)joinAction {
-    NSLog(@"join button clicked");
+    RMDJoinViewController *joinVC = [[RMDJoinViewController alloc] init];
+    [self presentViewController:joinVC animated:YES completion:nil];
 }
 
 @end

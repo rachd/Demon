@@ -7,7 +7,19 @@
 //
 
 #import "RMDHostViewController.h"
+#import "RMDHostView.h"
+
+@interface RMDHostViewController ()
+
+@property (nonatomic, strong) RMDHostView *hostView;
+
+@end
 
 @implementation RMDHostViewController
+
+- (void)viewDidLoad {
+    self.hostView = [[RMDHostView alloc] init];
+    self.view = self.hostView;
+}
 
 @end
