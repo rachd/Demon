@@ -24,6 +24,7 @@
     self.demonImage = [[UIImageView alloc] init];//WithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height / 2)];
     self.demonImage.image = [UIImage imageNamed:@"Demon"];
     
+    
     self.hostButton = [UIButton buttonWithType:UIButtonTypeCustom];
 //    self.hostButton.frame = CGRectMake(30, self.view.frame.size.height / 2 + 80, self.view.frame.size.width - 60, 60);
     [self.hostButton setTitle:@"Host a Game" forState:UIControlStateNormal];
@@ -44,12 +45,29 @@
     buttonStack.spacing = 30.0;
     
     UIStackView *stackView = [[UIStackView alloc] initWithArrangedSubviews:@[self.demonImage, buttonStack]];
-    stackView.frame = self.view.frame;
     stackView.axis = UILayoutConstraintAxisVertical;
     stackView.distribution = UIStackViewDistributionFillEqually;
     stackView.spacing = 30.0;
     [self.view addSubview:stackView];
     
+    self.demonImage.translatesAutoresizingMaskIntoConstraints = NO;
+    self.hostButton.translatesAutoresizingMaskIntoConstraints = NO;
+    self.joinButton.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.view addSubview:self.demonImage];
+    [self.view addSubview:self.hostButton];
+    [self.view addSubview:self.joinButton];
+    NSDictionary *viewsDictionary = @{@"demonImage":self.demonImage, @"hostButton":self.hostButton, @"joinButton":self.joinButton};
+    NSArray *constraint_POS_V = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[demonImage]-60-[hostButton]-[joinButton]"
+                                                                        options:NSLayoutFormatAlignAllLeft
+                                                                        metrics:nil
+                                                                          views:viewsDictionary];
+    
+//    NSArray *constraint_POS_H = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[demonImage]-0-|"
+//                                                                        options:0
+//                                                                        metrics:nil
+//                                                                          views:viewsDictionary];
+    [self.view addConstraints:constraint_POS_V];
+//    [self.view addConstraints:constraint_POS_H];
 }
 
 @end
