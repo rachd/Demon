@@ -11,7 +11,7 @@
 #import "RMDHostViewController.h"
 #import "RMDJoinViewController.h"
 
-@interface RMDLobbyViewController () <RMDHostDelegate>
+@interface RMDLobbyViewController () <RMDHostDelegate, RMDJoinDelegate>
 
 @property (nonatomic, strong)RMDLobbyView *lobbyView;
 
@@ -39,6 +39,10 @@
 }
 
 - (void)closeHostView {
+    [self dismissViewControllerAnimated:NO completion:nil];
+}
+
+- (void)closeJoinView {
     [self dismissViewControllerAnimated:NO completion:nil];
 }
 

@@ -20,6 +20,8 @@
 - (void)viewDidLoad {
     self.joinView = [[RMDJoinView alloc] init];
     self.view = self.joinView;
+    
+    [self.joinView.closeButton addTarget:self.delegate action:@selector(closeJoinView) forControlEvents:UIControlEventTouchUpInside];
 }
 
 @end

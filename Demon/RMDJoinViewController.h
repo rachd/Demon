@@ -8,6 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol RMDJoinDelegate <NSObject>
+
+@required
+
+- (void)closeJoinView;
+
+@end
+
+
 @interface RMDJoinViewController : UIViewController
+
+@property (nonatomic, weak) id <RMDJoinDelegate> delegate;
 
 @end

@@ -10,4 +10,6 @@
 
 @interface RMDJoinView : UIView
 
+@property (nonatomic, strong) UIButton *closeButton;
+
 @end
