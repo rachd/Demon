@@ -10,4 +10,6 @@
 
 @interface RMDHostView : UIView
 
+@property (nonatomic, strong) UIButton *closeButton;
+
 @end

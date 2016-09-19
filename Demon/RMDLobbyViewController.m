@@ -11,7 +11,7 @@
 #import "RMDHostViewController.h"
 #import "RMDJoinViewController.h"
 
-@interface RMDLobbyViewController ()
+@interface RMDLobbyViewController () <RMDHostDelegate>
 
 @property (nonatomic, strong)RMDLobbyView *lobbyView;
 
@@ -29,12 +29,17 @@
 
 - (void)hostAction {
     RMDHostViewController *hostVC = [[RMDHostViewController alloc] init];
+    hostVC.delegate = self;
     [self presentViewController:hostVC animated:YES completion:nil];
 }
 
 - (void)joinAction {
     RMDJoinViewController *joinVC = [[RMDJoinViewController alloc] init];
     [self presentViewController:joinVC animated:YES completion:nil];
+}
+
+- (void)closeHostView {
+    [self dismissViewControllerAnimated:NO completion:nil];
 }
 
 @end

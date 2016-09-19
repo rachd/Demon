@@ -20,6 +20,9 @@
 - (void)viewDidLoad {
     self.hostView = [[RMDHostView alloc] init];
     self.view = self.hostView;
+    
+    [self.hostView.closeButton addTarget:self.delegate action:@selector(closeHostView) forControlEvents:UIControlEventTouchUpInside];
+
 }
 
 @end

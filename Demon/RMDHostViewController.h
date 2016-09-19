@@ -8,6 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol RMDHostDelegate <NSObject>
+
+@required
+
+- (void)closeHostView;
+
+@end
+
+
 @interface RMDHostViewController : UIViewController
+
+@property (nonatomic, weak) id <RMDHostDelegate> delegate;
 
 @end
