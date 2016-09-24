@@ -38,22 +38,42 @@
     nameLabel.font = [UIFont systemFontOfSize:16];
     [self addSubview:nameLabel];
     
-    NSDictionary *viewDictionary = @{@"nameField":nameField, @"nameLabel":nameLabel};
-    NSArray *constraints_V = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-80-[nameLabel(40)]-[nameField(50)]"
+    UISwitch *visibleSwitch = [[UISwitch alloc] init];
+    visibleSwitch.translatesAutoresizingMaskIntoConstraints = NO;
+    visibleSwitch.on = YES;
+    [self addSubview:visibleSwitch];
+    
+    UIButton *searchButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    [searchButton setTitle:@"Search for Devices" forState:UIControlStateNormal];
+    searchButton.translatesAutoresizingMaskIntoConstraints = NO;
+    [self addSubview:searchButton];
+    
+    UITableView *tableView = [[UITableView alloc] init];
+    tableView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self addSubview:tableView];
+    
+    UIButton *disconnectButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    disconnectButton.translatesAutoresizingMaskIntoConstraints = NO;
+    [disconnectButton setTitle:@"Disconnect" forState:UIControlStateNormal];
+    [self addSubview:disconnectButton];
+    
+    UIStackView *stackView = [[UIStackView alloc] initWithArrangedSubviews:@[nameLabel, nameField, visibleSwitch, searchButton, tableView, disconnectButton]];
+    stackView.axis = UILayoutConstraintAxisVertical;
+    stackView.translatesAutoresizingMaskIntoConstraints = NO;
+    stackView.distribution = UIStackViewDistributionFill;
+    [self addSubview:stackView];
+    
+    NSDictionary *viewDictionary = @{@"stackView":stackView};
+    NSArray *constraints_V = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-80-[stackView]-|"
                                                                                options:0
                                                                                metrics:nil
                                                                                  views:viewDictionary];
-    NSArray *constraints_H_label = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-30-[nameLabel]-30-|"
+    NSArray *constraints_H = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[stackView]-20-|"
                                                                                options:0
                                                                                metrics:nil
                                                                                  views:viewDictionary];
-    NSArray *constraints_H_field = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-30-[nameField]-30-|"
-                                                                     options:0
-                                                                     metrics:nil
-                                                                       views:viewDictionary];
     [self addConstraints:constraints_V];
-    [self addConstraints:constraints_H_label];
-    [self addConstraints:constraints_H_field];
+    [self addConstraints:constraints_H];
 }
 
 - (void)setUpCloseButton {

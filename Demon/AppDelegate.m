@@ -18,6 +18,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    _connectionManager = [[RMDConnectionManager alloc] init];
     RMDLobbyViewController *lobbyVC = [[RMDLobbyViewController alloc] init];
     [self.window setRootViewController:lobbyVC];
     [self.window makeKeyAndVisible];

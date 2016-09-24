@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MultipeerConnectivity/MultipeerConnectivity.h>
 
 @protocol RMDHostDelegate <NSObject>
 

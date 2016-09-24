@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RMDConnectionManager.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+@property (nonatomic, strong) RMDConnectionManager *connectionManager;
 
 
 @end
