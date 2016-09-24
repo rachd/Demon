@@ -14,4 +14,6 @@
 @property (nonatomic, strong) UIButton *hostButton;
 @property (nonatomic, strong) UIButton *joinButton;
 
+- (void)rotate;
+
 @end

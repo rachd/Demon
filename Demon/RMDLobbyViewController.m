@@ -46,4 +46,9 @@
     [self dismissViewControllerAnimated:NO completion:nil];
 }
 
+- (void)viewWillTransitionToSize:(CGSize)size
+       withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
+    [self.lobbyView rotate];
+}
+
 @end

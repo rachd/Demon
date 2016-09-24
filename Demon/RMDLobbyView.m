@@ -8,6 +8,12 @@
 
 #import "RMDLobbyView.h"
 
+@interface RMDLobbyView ()
+
+@property (nonatomic, strong) UIStackView *mainStack;
+
+@end
+
 @implementation RMDLobbyView
 
 - (instancetype)init {
@@ -43,14 +49,16 @@
         buttonStack.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:buttonStack];
     
-        UIStackView *stackView = [[UIStackView alloc] initWithArrangedSubviews:@[self.demonImage, buttonStack]];
-        stackView.axis = UILayoutConstraintAxisVertical;
-        stackView.distribution = UIStackViewDistributionFillEqually;
-        stackView.spacing = 30.0;
-        stackView.translatesAutoresizingMaskIntoConstraints = NO;
-        [self addSubview:stackView];
+        self.mainStack = [[UIStackView alloc] initWithArrangedSubviews:@[self.demonImage, buttonStack]];
+        self.mainStack.axis = UILayoutConstraintAxisVertical;
+        self.mainStack.distribution = UIStackViewDistributionFillEqually;
+        self.mainStack.spacing = 30.0;
+        self.mainStack.translatesAutoresizingMaskIntoConstraints = NO;
+        [self addSubview:self.mainStack];
         
-        NSDictionary *viewsDictionary = @{@"stackView": stackView};
+        
+        
+        NSDictionary *viewsDictionary = @{@"stackView": self.mainStack};
         NSArray *vert = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-20-[stackView]-20-|"
                                                                 options:0
                                                                 metrics:nil
@@ -63,6 +71,14 @@
         [self addConstraints:horiz];
     }
     return self;
+}
+
+- (void)rotate {
+    if (self.mainStack.axis == UILayoutConstraintAxisVertical) {
+        self.mainStack.axis = UILayoutConstraintAxisHorizontal;
+    } else {
+        self.mainStack.axis = UILayoutConstraintAxisVertical;
+    }
 }
 
 @end
