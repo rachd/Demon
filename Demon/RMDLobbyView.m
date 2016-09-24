@@ -17,59 +17,50 @@
     
         self.demonImage = [[UIImageView alloc] init];
         self.demonImage.image = [UIImage imageNamed:@"Demon"];
-    
+        self.demonImage.translatesAutoresizingMaskIntoConstraints = NO;
+        [self addSubview:self.demonImage];
     
         self.hostButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [self.hostButton setTitle:@"Host a Game" forState:UIControlStateNormal];
         self.hostButton.layer.borderColor = [[UIColor whiteColor] CGColor];
         self.hostButton.layer.borderWidth = 4;
         self.hostButton.layer.cornerRadius = 12;
+        self.hostButton.translatesAutoresizingMaskIntoConstraints = NO;
+        [self addSubview:self.hostButton];
     
         self.joinButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [self.joinButton setTitle:@"Join a Game" forState:UIControlStateNormal];
         self.joinButton.layer.borderColor = [[UIColor whiteColor] CGColor];
         self.joinButton.layer.borderWidth = 4;
         self.joinButton.layer.cornerRadius = 12;
-//        self.joinButton addTarget: action:<#(nonnull SEL)#> forControlEvents:<#(UIControlEvents)#>
+        self.joinButton.translatesAutoresizingMaskIntoConstraints = NO;
+        [self addSubview:self.joinButton];
     
         UIStackView *buttonStack = [[UIStackView alloc] initWithArrangedSubviews:@[self.hostButton, self.joinButton]];
         buttonStack.axis = UILayoutConstraintAxisVertical;
         buttonStack.distribution = UIStackViewDistributionFillEqually;
         buttonStack.spacing = 30.0;
+        buttonStack.translatesAutoresizingMaskIntoConstraints = NO;
+        [self addSubview:buttonStack];
     
         UIStackView *stackView = [[UIStackView alloc] initWithArrangedSubviews:@[self.demonImage, buttonStack]];
         stackView.axis = UILayoutConstraintAxisVertical;
         stackView.distribution = UIStackViewDistributionFillEqually;
         stackView.spacing = 30.0;
+        stackView.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:stackView];
-    
-        self.demonImage.translatesAutoresizingMaskIntoConstraints = NO;
-        [self addSubview:self.demonImage];
-    
-        [self addSubview:buttonStack];
-        NSDictionary *viewsDictionary = @{@"demonImage":self.demonImage, @"hostButton":self.hostButton, @"joinButton":self.joinButton, @"buttonStack":buttonStack};
-        NSArray *constraint_POS_V_demon = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[demonImage(300)]"
-                                                                              options:0
-                                                                              metrics:nil
-                                                                                views:viewsDictionary];
-        NSArray *constraint_POS_V_buttons = [NSLayoutConstraint constraintsWithVisualFormat:@"V:[buttonStack(200)]-30-|"
-                                                                                options:0
-                                                                                metrics:nil
-                                                                                  views:viewsDictionary];
-    
-        NSArray *constraint_POS_H_demon = [NSLayoutConstraint constraintsWithVisualFormat:@"H:[demonImage(300)]"
-                                                                              options:0
-                                                                              metrics:nil
-                                                                                views:viewsDictionary];
-    
-        NSArray *constraint_POS_H_buttons = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[buttonStack]-0-|"
-                                                                                options:0
-                                                                                metrics:nil
-                                                                                  views:viewsDictionary];
-        [self addConstraints:constraint_POS_V_demon];
-        [self addConstraints:constraint_POS_V_buttons];
-        [self addConstraints:constraint_POS_H_buttons];
-        [self addConstraints:constraint_POS_H_demon];
+        
+        NSDictionary *viewsDictionary = @{@"stackView": stackView};
+        NSArray *vert = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-20-[stackView]-20-|"
+                                                                options:0
+                                                                metrics:nil
+                                                                  views:viewsDictionary];
+        NSArray *horiz = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[stackView]-|"
+                                                                 options:0
+                                                                 metrics:nil
+                                                                   views:viewsDictionary];
+        [self addConstraints:vert];
+        [self addConstraints:horiz];
     }
     return self;
 }
