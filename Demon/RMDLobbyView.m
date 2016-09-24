@@ -57,8 +57,21 @@
         [self addSubview:self.mainStack];
         
         
+        UILabel *titleLabel = [[UILabel alloc] init];
+        titleLabel.text = @"Demon";
+        titleLabel.font = [UIFont systemFontOfSize:40];
+        titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
+        titleLabel.textColor = [UIColor whiteColor];
+        [self addSubview:titleLabel];
         
-        NSDictionary *viewsDictionary = @{@"stackView": self.mainStack};
+        UIStackView *titleStack = [[UIStackView alloc] initWithArrangedSubviews:@[titleLabel, self.mainStack]];
+        titleStack.translatesAutoresizingMaskIntoConstraints = NO;
+        titleStack.axis = UILayoutConstraintAxisVertical;
+        titleStack.alignment = UIStackViewAlignmentCenter;
+        titleStack.spacing = 20.0;
+        [self addSubview:titleStack];
+        
+        NSDictionary *viewsDictionary = @{@"stackView": titleStack};
         NSArray *vert = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-20-[stackView]-20-|"
                                                                 options:0
                                                                 metrics:nil
