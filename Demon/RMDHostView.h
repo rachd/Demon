@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RMDHostViewController.h"
 
 @interface RMDHostView : UIView
 
 @property (nonatomic, strong) UIButton *closeButton;
+@property (nonatomic, weak) RMDHostViewController *hostVC;
 
 @end

@@ -38,14 +38,10 @@
     nameLabel.font = [UIFont systemFontOfSize:16];
     [self addSubview:nameLabel];
     
-    UISwitch *visibleSwitch = [[UISwitch alloc] init];
-    visibleSwitch.translatesAutoresizingMaskIntoConstraints = NO;
-    visibleSwitch.on = YES;
-    [self addSubview:visibleSwitch];
-    
     UIButton *searchButton = [UIButton buttonWithType:UIButtonTypeSystem];
     [searchButton setTitle:@"Search for Devices" forState:UIControlStateNormal];
     searchButton.translatesAutoresizingMaskIntoConstraints = NO;
+    [searchButton addTarget:self.hostVC action:@selector(browseForDevices:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:searchButton];
     
     UITableView *tableView = [[UITableView alloc] init];
@@ -57,7 +53,7 @@
     [disconnectButton setTitle:@"Disconnect" forState:UIControlStateNormal];
     [self addSubview:disconnectButton];
     
-    UIStackView *stackView = [[UIStackView alloc] initWithArrangedSubviews:@[nameLabel, nameField, visibleSwitch, searchButton, tableView, disconnectButton]];
+    UIStackView *stackView = [[UIStackView alloc] initWithArrangedSubviews:@[nameLabel, nameField, searchButton, tableView, disconnectButton]];
     stackView.axis = UILayoutConstraintAxisVertical;
     stackView.translatesAutoresizingMaskIntoConstraints = NO;
     stackView.distribution = UIStackViewDistributionFill;
