@@ -21,23 +21,35 @@
 
 - (void)setUpTextField {
     
+    UILabel *ruleLabel = [[UILabel alloc] init];
+    ruleLabel.text = @"Rule #1";
+    ruleLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    ruleLabel.textColor = [UIColor whiteColor];
+    ruleLabel.textAlignment = NSTextAlignmentCenter;
+    [self addSubview:ruleLabel];
+    
     self.ruleField = [[UITextField alloc] init];
     self.ruleField.delegate = self.ruleVC;
     self.ruleField.translatesAutoresizingMaskIntoConstraints = NO;
     self.ruleField.borderStyle = UITextBorderStyleRoundedRect;
     [self addSubview:self.ruleField];
     
-    NSDictionary *viewsDictionary = @{@"ruleField": self.ruleField};
-    NSArray *vert = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-80-[ruleField]-20-|"
+    NSDictionary *viewsDictionary = @{@"ruleField": self.ruleField, @"ruleLabel": ruleLabel};
+    NSArray *vert = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-40-[ruleLabel(==40)]-40-[ruleField]-20-|"
                                                             options:0
                                                             metrics:nil
                                                               views:viewsDictionary];
-    NSArray *horiz = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[ruleField]-|"
+    NSArray *horiz1 = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[ruleField]-|"
                                                              options:0
                                                              metrics:nil
                                                                views:viewsDictionary];
+    NSArray *horiz2 = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[ruleLabel]-|"
+                                                              options:0
+                                                              metrics:nil
+                                                                views:viewsDictionary];
     [self addConstraints:vert];
-    [self addConstraints:horiz];
+    [self addConstraints:horiz1];
+    [self addConstraints:horiz2];
 }
 
 @end
