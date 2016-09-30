@@ -17,11 +17,27 @@
 
 @implementation RMDJoinViewController
 
+MatchmakingClient *_matchmakingClient;
+
 - (void)viewDidLoad {
     self.joinView = [[RMDJoinView alloc] init];
     self.view = self.joinView;
     
     [self.joinView.closeButton addTarget:self.delegate action:@selector(closeJoinView) forControlEvents:UIControlEventTouchUpInside];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    if (_matchmakingClient == nil)
+    {
+        _matchmakingClient = [[MatchmakingClient alloc] init];
+        [_matchmakingClient startSearchingForServersWithSessionID:@"DEMON"];
+        
+        self.joinView.nameField.placeholder = _matchmakingClient.session.displayName;
+        //[self.tableView reloadData];
+    }
 }
 
 @end

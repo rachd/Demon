@@ -18,7 +18,7 @@
 @end
 
 
-@interface RMDHostViewController : UIViewController <MCBrowserViewControllerDelegate>
+@interface RMDHostViewController : UIViewController <MCBrowserViewControllerDelegate, UITextFieldDelegate>
 
 @property (nonatomic, weak) id <RMDHostDelegate> delegate;
 

@@ -11,5 +11,6 @@
 @interface RMDJoinView : UIView
 
 @property (nonatomic, strong) UIButton *closeButton;
+@property (nonatomic, strong) UITextField *nameField;
 
 @end

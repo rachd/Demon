@@ -22,13 +22,13 @@
 }
 
 - (void)setUpTextField {
-    UITextField *nameField = [[UITextField alloc] init];
-    nameField.translatesAutoresizingMaskIntoConstraints = NO;
-    nameField.placeholder = @"Placeholder";
-    nameField.textColor = [UIColor blackColor];
-    nameField.backgroundColor = [UIColor whiteColor];
-    nameField.layer.cornerRadius = 6;
-    [self addSubview:nameField];
+    self.nameField = [[UITextField alloc] init];
+    self.nameField.translatesAutoresizingMaskIntoConstraints = NO;
+    self.nameField.placeholder = @"Placeholder";
+    self.nameField.textColor = [UIColor blackColor];
+    self.nameField.backgroundColor = [UIColor whiteColor];
+    self.nameField.layer.cornerRadius = 6;
+    [self addSubview:self.nameField];
     
     UILabel *nameLabel = [[UILabel alloc] init];
     nameLabel.text = @"Your Name: ";
@@ -37,7 +37,7 @@
     nameLabel.font = [UIFont systemFontOfSize:16];
     [self addSubview:nameLabel];
     
-    NSDictionary *viewDictionary = @{@"nameField":nameField, @"nameLabel":nameLabel};
+    NSDictionary *viewDictionary = @{@"nameField":self.nameField, @"nameLabel":nameLabel};
     NSArray *constraints_V = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-80-[nameLabel(40)]-[nameField(50)]"
                                                                      options:0
                                                                      metrics:nil

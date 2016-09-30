@@ -13,5 +13,6 @@
 
 @property (nonatomic, strong) UIButton *closeButton;
 @property (nonatomic, weak) RMDHostViewController *hostVC;
+@property (nonatomic, strong) UITextField *nameField;
 
 @end

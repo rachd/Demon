@@ -23,13 +23,14 @@
 }
 
 - (void)setUpTextField {
-    UITextField *nameField = [[UITextField alloc] init];
-    nameField.translatesAutoresizingMaskIntoConstraints = NO;
-    nameField.placeholder = @"Placeholder";
-    nameField.textColor = [UIColor blackColor];
-    nameField.backgroundColor = [UIColor whiteColor];
-    nameField.layer.cornerRadius = 6;
-    [self addSubview:nameField];
+    self.nameField = [[UITextField alloc] init];
+    self.nameField.translatesAutoresizingMaskIntoConstraints = NO;
+    self.nameField.placeholder = @"Placeholder";
+    self.nameField.textColor = [UIColor blackColor];
+    self.nameField.backgroundColor = [UIColor whiteColor];
+    self.nameField.layer.cornerRadius = 6;
+    self.nameField.delegate = self.hostVC;
+    [self addSubview:self.nameField];
     
     UILabel *nameLabel = [[UILabel alloc] init];
     nameLabel.text = @"Name of Game: ";
@@ -53,7 +54,7 @@
     [disconnectButton setTitle:@"Disconnect" forState:UIControlStateNormal];
     [self addSubview:disconnectButton];
     
-    UIStackView *stackView = [[UIStackView alloc] initWithArrangedSubviews:@[nameLabel, nameField, searchButton, tableView, disconnectButton]];
+    UIStackView *stackView = [[UIStackView alloc] initWithArrangedSubviews:@[nameLabel, self.nameField, searchButton, tableView, disconnectButton]];
     stackView.axis = UILayoutConstraintAxisVertical;
     stackView.translatesAutoresizingMaskIntoConstraints = NO;
     stackView.distribution = UIStackViewDistributionFill;

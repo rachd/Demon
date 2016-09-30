@@ -9,6 +9,7 @@
 #import "RMDHostViewController.h"
 #import "RMDHostView.h"
 #import "AppDelegate.h"
+#import "MatchmakingServer.h"
 
 @interface RMDHostViewController ()
 
@@ -19,10 +20,12 @@
 
 @implementation RMDHostViewController
 
+MatchmakingServer *_matchmakingServer;
+
 - (void)viewDidLoad {
     _appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    [[_appDelegate connectionManager] setupPeerAndSessionWithDisplayName:[UIDevice currentDevice].name];
-    [[_appDelegate connectionManager] advertiseSelf:YES];
+    //[[_appDelegate connectionManager] setupPeerAndSessionWithDisplayName:[UIDevice currentDevice].name];
+    //[[_appDelegate connectionManager] advertiseSelf:YES];
     
     self.hostView = [[RMDHostView alloc] init];
     self.hostView.hostVC = self;
@@ -32,19 +35,52 @@
 
 }
 
-- (void)browseForDevices:(id)sender {
-    [[_appDelegate connectionManager] setupMCBrowser];
-    [[[_appDelegate connectionManager] browser] setDelegate:self];
-    [self presentViewController:[[_appDelegate connectionManager] browser] animated:YES completion:nil];
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    if (_matchmakingServer == nil)
+    {
+        _matchmakingServer = [[MatchmakingServer alloc] init];
+        _matchmakingServer.maxClients = 3;
+        [_matchmakingServer startAcceptingConnectionsForSessionID:@"DEMON"];
+        
+        self.hostView.nameField.placeholder = _matchmakingServer.session.displayName;
+       // [self.tableView reloadData];
+    }
 }
 
--(void)browserViewControllerDidFinish:(MCBrowserViewController *)browserViewController{
-    [_appDelegate.connectionManager.browser dismissViewControllerAnimated:YES completion:nil];
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [self.hostView.nameField resignFirstResponder];
+    
+   // _appDelegate.connectionManager.peerID = nil;
+   // _appDelegate.connectionManager.session = nil;
+  //  _appDelegate.connectionManager.browser = nil;
+  //
+  //  [_appDelegate.connectionManager.advertiser stop];
+  //  _appDelegate.connectionManager.advertiser = nil;
+    
+    
+   // [_appDelegate.connectionManager setupPeerAndSessionWithDisplayName:self.hostView.nameField.text];
+   // [_appDelegate.connectionManager setupMCBrowser];
+   // [_appDelegate.connectionManager advertiseSelf:YES];
+    
+    return YES;
 }
 
+//- (void)browseForDevices:(id)sender {
+   // [[_appDelegate connectionManager] setupMCBrowser];
+   // [[[_appDelegate connectionManager] browser] setDelegate:self];
+   // [self presentViewController:[[_appDelegate connectionManager] browser] animated:YES completion:nil];
+//}
 
--(void)browserViewControllerWasCancelled:(MCBrowserViewController *)browserViewController{
-    [_appDelegate.connectionManager.browser dismissViewControllerAnimated:YES completion:nil];
-}
+//-(void)browserViewControllerDidFinish:(MCBrowserViewController *)browserViewController{
+ //   [_appDelegate.connectionManager.browser dismissViewControllerAnimated:YES completion:nil];
+//}
+
+
+//-(void)browserViewControllerWasCancelled:(MCBrowserViewController *)browserViewController{
+//    [_appDelegate.connectionManager.browser dismissViewControllerAnimated:YES completion:nil];
+//}
 
 @end
