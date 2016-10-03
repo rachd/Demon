@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MatchmakingClient.h"
 
 @protocol RMDJoinDelegate <NSObject>
 

@@ -16,9 +16,9 @@
 @property (nonatomic, strong) MCBrowserViewController *browser;
 @property (nonatomic, strong) MCAdvertiserAssistant *advertiser;
 
-
--(void)setupPeerAndSessionWithDisplayName:(NSString *)displayName;
--(void)setupMCBrowser;
--(void)advertiseSelf:(BOOL)shouldAdvertise;
++ (instancetype)singletonManager;
+- (void)setupPeerAndSessionWithDisplayName:(NSString *)displayName;
+- (void)setupMCBrowser;
+- (void)cancelSession;
 
 @end

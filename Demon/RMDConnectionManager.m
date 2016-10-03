@@ -10,7 +10,15 @@
 
 @implementation RMDConnectionManager
 
--(id)init{
++ (instancetype)singletonManager {
+    static RMDConnectionManager *singletonManager;
+    if (!singletonManager) {
+        singletonManager = [[self alloc] initPrivate];
+    }
+    return singletonManager;
+}
+
+-(instancetype)initPrivate {
     self = [super init];
     
     if (self) {
@@ -23,28 +31,27 @@
     return self;
 }
 
--(void)setupPeerAndSessionWithDisplayName:(NSString *)displayName{
+- (void)setupPeerAndSessionWithDisplayName:(NSString *)displayName {
     _peerID = [[MCPeerID alloc] initWithDisplayName:displayName];
     
     _session = [[MCSession alloc] initWithPeer:_peerID];
     _session.delegate = self;
+    
+    _advertiser = [[MCAdvertiserAssistant alloc] initWithServiceType:@"demon"
+                                                       discoveryInfo:nil
+                                                             session:_session];
+    [_advertiser start];
 }
 
--(void)setupMCBrowser{
+- (void)setupMCBrowser {
     _browser = [[MCBrowserViewController alloc] initWithServiceType:@"demon" session:_session];
 }
 
--(void)advertiseSelf:(BOOL)shouldAdvertise{
-    if (shouldAdvertise) {
-        _advertiser = [[MCAdvertiserAssistant alloc] initWithServiceType:@"demon"
-                                                           discoveryInfo:nil
-                                                                 session:_session];
-        [_advertiser start];
-    }
-    else{
-        [_advertiser stop];
-        _advertiser = nil;
-    }
+- (void)cancelSession {
+    _peerID = nil;
+    _session = nil;
+    [_advertiser stop];
+    _advertiser = nil;
 }
 
 #pragma mark MCSession Delegate Methods

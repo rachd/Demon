@@ -8,6 +8,7 @@
 
 #import "RMDJoinViewController.h"
 #import "RMDJoinView.h"
+#import "RMDConnectionManager.h"
 
 @interface RMDJoinViewController ()
 
@@ -17,27 +18,17 @@
 
 @implementation RMDJoinViewController
 
-MatchmakingClient *_matchmakingClient;
-
 - (void)viewDidLoad {
     self.joinView = [[RMDJoinView alloc] init];
     self.view = self.joinView;
     
     [self.joinView.closeButton addTarget:self.delegate action:@selector(closeJoinView) forControlEvents:UIControlEventTouchUpInside];
+    
+    [[RMDConnectionManager singletonManager] setupPeerAndSessionWithDisplayName:[UIDevice currentDevice].name];
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    
-    if (_matchmakingClient == nil)
-    {
-        _matchmakingClient = [[MatchmakingClient alloc] init];
-        [_matchmakingClient startSearchingForServersWithSessionID:@"DEMON"];
-        
-        self.joinView.nameField.placeholder = _matchmakingClient.session.displayName;
-        //[self.tableView reloadData];
-    }
+- (void)viewWillDisappear:(BOOL)animated {
+    [[RMDConnectionManager singletonManager] cancelSession];
 }
 
 @end
