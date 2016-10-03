@@ -12,5 +12,6 @@
 
 @property (nonatomic, strong) UIButton *closeButton;
 @property (nonatomic, strong) UITextField *nameField;
+@property (nonatomic, strong) UIButton *connectButton;
 
 @end

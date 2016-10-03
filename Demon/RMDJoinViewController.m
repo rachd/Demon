@@ -23,8 +23,14 @@
     self.view = self.joinView;
     
     [self.joinView.closeButton addTarget:self.delegate action:@selector(closeJoinView) forControlEvents:UIControlEventTouchUpInside];
+    [self.joinView.connectButton addTarget:self action:@selector(connect) forControlEvents:UIControlEventTouchUpInside];
     
-    [[RMDConnectionManager singletonManager] setupPeerAndSessionWithDisplayName:[UIDevice currentDevice].name];
+}
+
+- (void)connect {
+    if (![self.joinView.nameField.text isEqual: @""]) {
+        [[RMDConnectionManager singletonManager] setupPeerAndSessionWithDisplayName:self.joinView.nameField.text];
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

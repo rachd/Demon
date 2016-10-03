@@ -8,6 +8,12 @@
 
 #import "RMDJoinView.h"
 
+@interface RMDJoinView()
+
+@property (nonatomic, strong) UILabel *nameLabel;
+
+@end
+
 @implementation RMDJoinView
 
 - (instancetype)init {
@@ -17,6 +23,8 @@
         
         [self setUpTextField];
         [self setUpCloseButton];
+        [self setUpConnectButton];
+        [self setConstraints];
     }
     return self;
 }
@@ -30,29 +38,12 @@
     self.nameField.layer.cornerRadius = 6;
     [self addSubview:self.nameField];
     
-    UILabel *nameLabel = [[UILabel alloc] init];
-    nameLabel.text = @"Your Name: ";
-    nameLabel.textColor = [UIColor whiteColor];
-    nameLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    nameLabel.font = [UIFont systemFontOfSize:16];
-    [self addSubview:nameLabel];
-    
-    NSDictionary *viewDictionary = @{@"nameField":self.nameField, @"nameLabel":nameLabel};
-    NSArray *constraints_V = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-80-[nameLabel(40)]-[nameField(50)]"
-                                                                     options:0
-                                                                     metrics:nil
-                                                                       views:viewDictionary];
-    NSArray *constraints_H_label = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-30-[nameLabel]-30-|"
-                                                                           options:0
-                                                                           metrics:nil
-                                                                             views:viewDictionary];
-    NSArray *constraints_H_field = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-30-[nameField]-30-|"
-                                                                           options:0
-                                                                           metrics:nil
-                                                                             views:viewDictionary];
-    [self addConstraints:constraints_V];
-    [self addConstraints:constraints_H_label];
-    [self addConstraints:constraints_H_field];
+    self.nameLabel = [[UILabel alloc] init];
+    self.nameLabel.text = @"Your Name: ";
+    self.nameLabel.textColor = [UIColor whiteColor];
+    self.nameLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    self.nameLabel.font = [UIFont systemFontOfSize:16];
+    [self addSubview:self.nameLabel];
 }
 
 - (void)setUpCloseButton {
@@ -61,21 +52,44 @@
     self.closeButton.translatesAutoresizingMaskIntoConstraints = NO;
     [self.closeButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self addSubview:self.closeButton];
-    
-    NSDictionary *viewsDictionary = @{@"closeButton":self.closeButton};
-    NSArray *constraint_POS_V = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[closeButton(100)]"
+}
+
+- (void)setUpConnectButton {
+    self.connectButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    [self.connectButton setTitle:@"Connect" forState:UIControlStateNormal];
+    self.connectButton.translatesAutoresizingMaskIntoConstraints = NO;
+    [self addSubview:self.connectButton];
+}
+
+- (void)setConstraints {
+    NSDictionary *viewsDictionary = @{@"connectButton":self.connectButton, @"nameField":self.nameField, @"nameLabel":self.nameLabel, @"closeButton":self.closeButton};
+    NSArray *constraint_POS_V = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[closeButton(80)]-20-[nameLabel(40)]-[nameField(50)]-40-[connectButton(40)]"
                                                                         options:0
                                                                         metrics:nil
                                                                           views:viewsDictionary];
     
-    NSArray *constraint_POS_H = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[closeButton(100)]"
+    NSArray *constraint_POS_H = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[closeButton(80)]"
                                                                         options:0
                                                                         metrics:nil
                                                                           views:viewsDictionary];
+    NSArray *constraints_H_label = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-30-[nameLabel]-30-|"
+                                                                           options:0
+                                                                           metrics:nil
+                                                                             views:viewsDictionary];
+    NSArray *constraints_H_field = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-30-[nameField]-30-|"
+                                                                           options:0
+                                                                           metrics:nil
+                                                                             views:viewsDictionary];
+    NSArray *constraints_H_button = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-30-[connectButton]-30-|"
+                                                                            options:0
+                                                                            metrics:nil
+                                                                              views:viewsDictionary];
     
     [self addConstraints:constraint_POS_V];
     [self addConstraints:constraint_POS_H];
-
+    [self addConstraints:constraints_H_label];
+    [self addConstraints:constraints_H_field];
+    [self addConstraints:constraints_H_button];
 }
 
 @end
