@@ -13,6 +13,7 @@
 @interface RMDHostViewController ()
 
 @property (nonatomic, strong) RMDHostView *hostView;
+@property (nonatomic, strong) NSMutableArray *arrConnectedDevices;
 
 @end
 
@@ -25,13 +26,22 @@
     [self.hostView.closeButton addTarget:self.delegate action:@selector(closeHostView) forControlEvents:UIControlEventTouchUpInside];
     
     [[RMDConnectionManager singletonManager] setupPeerAndSessionWithDisplayName:[UIDevice currentDevice].name];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(peerDidChangeStateWithNotification:)
+                                                 name:@"MCDidChangeStateNotification"
+                                               object:nil];
+    
+    _arrConnectedDevices = [[NSMutableArray alloc] init];
 
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [[RMDConnectionManager singletonManager] setupMCBrowser];
     [[[RMDConnectionManager singletonManager] browser] setDelegate:self];
-    [self presentViewController:[[RMDConnectionManager singletonManager] browser] animated:YES completion:nil];
+    if (_arrConnectedDevices.count < 4) {
+        [self presentViewController:[[RMDConnectionManager singletonManager] browser] animated:YES completion:nil];
+    }
 }
 
 - (void)browserViewControllerDidFinish:(MCBrowserViewController *)browserViewController {
@@ -40,6 +50,23 @@
 
 - (void)browserViewControllerWasCancelled:(MCBrowserViewController *)browserViewController {
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+-(void)peerDidChangeStateWithNotification:(NSNotification *)notification{
+    MCPeerID *peerID = [[notification userInfo] objectForKey:@"peerID"];
+    NSString *peerDisplayName = peerID.displayName;
+    MCSessionState state = [[[notification userInfo] objectForKey:@"state"] intValue];
+    if (state != MCSessionStateConnecting) {
+        if (state == MCSessionStateConnected) {
+            [_arrConnectedDevices addObject:peerDisplayName];
+        }
+        else if (state == MCSessionStateNotConnected){
+            if ([_arrConnectedDevices count] > 0) {
+                int indexOfPeer = [_arrConnectedDevices indexOfObject:peerDisplayName];
+                [_arrConnectedDevices removeObjectAtIndex:indexOfPeer];
+            }
+        }
+    }
 }
 
 @end
