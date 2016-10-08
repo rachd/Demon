@@ -49,12 +49,13 @@
     self.connectionsTableView.translatesAutoresizingMaskIntoConstraints = NO;
     [self addSubview:self.connectionsTableView];
     
-    UIButton *disconnectButton = [UIButton buttonWithType:UIButtonTypeSystem];
-    disconnectButton.translatesAutoresizingMaskIntoConstraints = NO;
-    [disconnectButton setTitle:@"Disconnect" forState:UIControlStateNormal];
-    [self addSubview:disconnectButton];
+    UIButton *startButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    startButton.translatesAutoresizingMaskIntoConstraints = NO;
+    [startButton setTitle:@"Start The Game" forState:UIControlStateNormal];
+    [startButton addTarget:self.hostVC action:@selector(startTheGame) forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:startButton];
     
-    UIStackView *stackView = [[UIStackView alloc] initWithArrangedSubviews:@[nameLabel, self.nameField, searchButton, self.connectionsTableView, disconnectButton]];
+    UIStackView *stackView = [[UIStackView alloc] initWithArrangedSubviews:@[nameLabel, self.nameField, searchButton, self.connectionsTableView, startButton]];
     stackView.axis = UILayoutConstraintAxisVertical;
     stackView.translatesAutoresizingMaskIntoConstraints = NO;
     stackView.distribution = UIStackViewDistributionFill;

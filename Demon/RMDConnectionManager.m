@@ -54,6 +54,16 @@
     _advertiser = nil;
 }
 
+-(void)session:(MCSession *)session didReceiveData:(NSData *)data fromPeer:(MCPeerID *)peerID {
+    NSDictionary *dict = @{@"data": data,
+                           @"peerID": peerID
+                           };
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"StartGameNotification"
+                                                        object:nil
+                                                     userInfo:dict];
+}
+
 #pragma mark MCSession Delegate Methods
 
 -(void)session:(MCSession *)session peer:(MCPeerID *)peerID didChangeState:(MCSessionState)state{
@@ -64,11 +74,6 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:@"MCDidChangeStateNotification"
                                                         object:nil
                                                       userInfo:dict];
-}
-
-
--(void)session:(MCSession *)session didReceiveData:(NSData *)data fromPeer:(MCPeerID *)peerID{
-    
 }
 
 

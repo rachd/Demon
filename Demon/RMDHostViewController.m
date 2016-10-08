@@ -9,6 +9,7 @@
 #import "RMDHostViewController.h"
 #import "RMDHostView.h"
 #import "RMDConnectionManager.h"
+#import "RMDRuleEntryViewController.h"
 
 @interface RMDHostViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -73,6 +74,24 @@
             }
         }
     }
+}
+
+- (void)startTheGame {
+    NSData *dataToSend = [@"start" dataUsingEncoding:NSUTF8StringEncoding];
+    NSArray *allPeers = [RMDConnectionManager singletonManager].session.connectedPeers;
+    NSError *error;
+    
+    [[RMDConnectionManager singletonManager].session sendData:dataToSend
+                                                      toPeers:allPeers
+                                                     withMode:MCSessionSendDataReliable
+                                                       error:&error];
+    
+    if (error) {
+        NSLog(@"%@", [error localizedDescription]);
+    }
+   
+    RMDRuleEntryViewController *ruleVC = [[RMDRuleEntryViewController alloc] init];
+    [self presentViewController:ruleVC animated:YES completion:nil];
 }
 
 #pragma mark Table View methods

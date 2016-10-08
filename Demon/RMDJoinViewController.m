@@ -9,6 +9,7 @@
 #import "RMDJoinViewController.h"
 #import "RMDJoinView.h"
 #import "RMDConnectionManager.h"
+#import "RMDRuleEntryViewController.h"
 
 @interface RMDJoinViewController ()
 
@@ -24,6 +25,11 @@
     
     [self.joinView.closeButton addTarget:self.delegate action:@selector(closeJoinView) forControlEvents:UIControlEventTouchUpInside];
     [self.joinView.connectButton addTarget:self action:@selector(connect) forControlEvents:UIControlEventTouchUpInside];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(startGame)
+                                                 name:@"StartGameNotification"
+                                               object:nil];
 }
 
 - (void)connect {
@@ -34,6 +40,14 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     [[RMDConnectionManager singletonManager] cancelSession];
+}
+
+- (void)startGame {
+    NSLog(@"got the memo");
+    RMDRuleEntryViewController *ruleVC = [[RMDRuleEntryViewController alloc] init];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self presentViewController:ruleVC animated:YES completion:nil];
+    });
 }
 
 @end

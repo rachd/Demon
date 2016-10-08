@@ -23,5 +23,6 @@
 @property (nonatomic, weak) id <RMDHostDelegate> delegate;
 
 - (void)showSelectionBrowser;
+- (void)startTheGame;
 
 @end
