@@ -42,19 +42,19 @@
     UIButton *searchButton = [UIButton buttonWithType:UIButtonTypeSystem];
     [searchButton setTitle:@"Search for Devices" forState:UIControlStateNormal];
     searchButton.translatesAutoresizingMaskIntoConstraints = NO;
-    [searchButton addTarget:self.hostVC action:@selector(browseForDevices:) forControlEvents:UIControlEventTouchUpInside];
+    [searchButton addTarget:self.hostVC action:@selector(showSelectionBrowser) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:searchButton];
     
-    UITableView *tableView = [[UITableView alloc] init];
-    tableView.translatesAutoresizingMaskIntoConstraints = NO;
-    [self addSubview:tableView];
+    self.connectionsTableView = [[UITableView alloc] init];
+    self.connectionsTableView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self addSubview:self.connectionsTableView];
     
     UIButton *disconnectButton = [UIButton buttonWithType:UIButtonTypeSystem];
     disconnectButton.translatesAutoresizingMaskIntoConstraints = NO;
     [disconnectButton setTitle:@"Disconnect" forState:UIControlStateNormal];
     [self addSubview:disconnectButton];
     
-    UIStackView *stackView = [[UIStackView alloc] initWithArrangedSubviews:@[nameLabel, self.nameField, searchButton, tableView, disconnectButton]];
+    UIStackView *stackView = [[UIStackView alloc] initWithArrangedSubviews:@[nameLabel, self.nameField, searchButton, self.connectionsTableView, disconnectButton]];
     stackView.axis = UILayoutConstraintAxisVertical;
     stackView.translatesAutoresizingMaskIntoConstraints = NO;
     stackView.distribution = UIStackViewDistributionFill;

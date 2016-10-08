@@ -20,9 +20,7 @@
 		CC3D6B901D96B92700ADEDCF /* RMDConnectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CC3D6B8F1D96B92700ADEDCF /* RMDConnectionManager.m */; };
 		CC3D6B931D99E37200ADEDCF /* RMDRuleEntryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CC3D6B921D99E37200ADEDCF /* RMDRuleEntryViewController.m */; };
 		CC3D6B971D99E3AB00ADEDCF /* RMDRuleEntryView.m in Sources */ = {isa = PBXBuildFile; fileRef = CC3D6B961D99E3AB00ADEDCF /* RMDRuleEntryView.m */; };
-		CCF6615E1D9E0C9A000F88F7 /* MatchmakingServer.m in Sources */ = {isa = PBXBuildFile; fileRef = CCF6615D1D9E0C9A000F88F7 /* MatchmakingServer.m */; };
-		CCF661611D9E0CFA000F88F7 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCF661601D9E0CFA000F88F7 /* GameKit.framework */; };
-		CCF661641D9E0DA6000F88F7 /* MatchmakingClient.m in Sources */ = {isa = PBXBuildFile; fileRef = CCF661631D9E0DA6000F88F7 /* MatchmakingClient.m */; };
+		CC6BBBAF1DA06AEA00409BAB /* MultipeerConnectivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC6BBBAE1DA06AEA00409BAB /* MultipeerConnectivity.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,11 +49,8 @@
 		CC3D6B921D99E37200ADEDCF /* RMDRuleEntryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMDRuleEntryViewController.m; sourceTree = "<group>"; };
 		CC3D6B951D99E3AB00ADEDCF /* RMDRuleEntryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMDRuleEntryView.h; sourceTree = "<group>"; };
 		CC3D6B961D99E3AB00ADEDCF /* RMDRuleEntryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMDRuleEntryView.m; sourceTree = "<group>"; };
-		CCF6615C1D9E0C9A000F88F7 /* MatchmakingServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchmakingServer.h; sourceTree = "<group>"; };
-		CCF6615D1D9E0C9A000F88F7 /* MatchmakingServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchmakingServer.m; sourceTree = "<group>"; };
+		CC6BBBAE1DA06AEA00409BAB /* MultipeerConnectivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MultipeerConnectivity.framework; path = System/Library/Frameworks/MultipeerConnectivity.framework; sourceTree = SDKROOT; };
 		CCF661601D9E0CFA000F88F7 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
-		CCF661621D9E0DA6000F88F7 /* MatchmakingClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchmakingClient.h; sourceTree = "<group>"; };
-		CCF661631D9E0DA6000F88F7 /* MatchmakingClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchmakingClient.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,7 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CCF661611D9E0CFA000F88F7 /* GameKit.framework in Frameworks */,
+				CC6BBBAF1DA06AEA00409BAB /* MultipeerConnectivity.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -92,8 +87,6 @@
 			children = (
 				CC09813F1D8B75A500C2008F /* AppDelegate.h */,
 				CC0981401D8B75A500C2008F /* AppDelegate.m */,
-				CC3D6B8E1D96B92700ADEDCF /* RMDConnectionManager.h */,
-				CC3D6B8F1D96B92700ADEDCF /* RMDConnectionManager.m */,
 				CC3088D71D9E0988008D8376 /* Networking */,
 				CC3D6B941D99E37A00ADEDCF /* Rule Entry */,
 				CC3A9D331D8F48A8001736C9 /* Lobby */,
@@ -118,10 +111,8 @@
 		CC3088D71D9E0988008D8376 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				CCF6615C1D9E0C9A000F88F7 /* MatchmakingServer.h */,
-				CCF6615D1D9E0C9A000F88F7 /* MatchmakingServer.m */,
-				CCF661621D9E0DA6000F88F7 /* MatchmakingClient.h */,
-				CCF661631D9E0DA6000F88F7 /* MatchmakingClient.m */,
+				CC3D6B8E1D96B92700ADEDCF /* RMDConnectionManager.h */,
+				CC3D6B8F1D96B92700ADEDCF /* RMDConnectionManager.m */,
 			);
 			name = Networking;
 			sourceTree = "<group>";
@@ -173,6 +164,7 @@
 		CCF6615F1D9E0CFA000F88F7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CC6BBBAE1DA06AEA00409BAB /* MultipeerConnectivity.framework */,
 				CCF661601D9E0CFA000F88F7 /* GameKit.framework */,
 			);
 			name = Frameworks;
@@ -209,6 +201,8 @@
 				TargetAttributes = {
 					CC0981381D8B75A500C2008F = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = 549743G9UM;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -252,12 +246,10 @@
 				CC0981611D8B851E00C2008F /* RMDLobbyViewController.m in Sources */,
 				CC0981411D8B75A500C2008F /* AppDelegate.m in Sources */,
 				CC3D6B901D96B92700ADEDCF /* RMDConnectionManager.m in Sources */,
-				CCF661641D9E0DA6000F88F7 /* MatchmakingClient.m in Sources */,
 				CC3A9D2F1D8F45C1001736C9 /* RMDHostViewController.m in Sources */,
 				CC3D6B931D99E37200ADEDCF /* RMDRuleEntryViewController.m in Sources */,
 				CC3A9D3E1D8F49C9001736C9 /* RMDJoinViewController.m in Sources */,
 				CC3A9D3B1D8F49BE001736C9 /* RMDJoinView.m in Sources */,
-				CCF6615E1D9E0C9A000F88F7 /* MatchmakingServer.m in Sources */,
 				CC09813E1D8B75A500C2008F /* main.m in Sources */,
 				CC3A9D321D8F45DA001736C9 /* RMDLobbyView.m in Sources */,
 			);
@@ -367,11 +359,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 549743G9UM;
 				INFOPLIST_FILE = Demon/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.racheldorn.Demon;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nutmeg.Demon;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "c18f7dbe-a457-49d3-b978-b3ce8f42616b";
+				PROVISIONING_PROFILE_SPECIFIER = Demon;
 			};
 			name = Debug;
 		};
@@ -379,11 +373,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 549743G9UM;
 				INFOPLIST_FILE = Demon/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.racheldorn.Demon;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nutmeg.Demon;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "c18f7dbe-a457-49d3-b978-b3ce8f42616b";
+				PROVISIONING_PROFILE_SPECIFIER = Demon;
 			};
 			name = Release;
 		};

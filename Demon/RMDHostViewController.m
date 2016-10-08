@@ -10,7 +10,7 @@
 #import "RMDHostView.h"
 #import "RMDConnectionManager.h"
 
-@interface RMDHostViewController ()
+@interface RMDHostViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) RMDHostView *hostView;
 @property (nonatomic, strong) NSMutableArray *arrConnectedDevices;
@@ -22,6 +22,9 @@
 - (void)viewDidLoad {
     self.hostView = [[RMDHostView alloc] init];
     self.view = self.hostView;
+    
+    self.hostView.connectionsTableView.delegate = self;
+    self.hostView.connectionsTableView.dataSource = self;
     
     [self.hostView.closeButton addTarget:self.delegate action:@selector(closeHostView) forControlEvents:UIControlEventTouchUpInside];
     
@@ -39,17 +42,20 @@
 - (void)viewWillAppear:(BOOL)animated {
     [[RMDConnectionManager singletonManager] setupMCBrowser];
     [[[RMDConnectionManager singletonManager] browser] setDelegate:self];
-    if (_arrConnectedDevices.count < 4) {
-        [self presentViewController:[[RMDConnectionManager singletonManager] browser] animated:YES completion:nil];
-    }
+}
+
+- (void)showSelectionBrowser {
+    [self presentViewController:[[RMDConnectionManager singletonManager] browser] animated:YES completion:nil];
 }
 
 - (void)browserViewControllerDidFinish:(MCBrowserViewController *)browserViewController {
     [self dismissViewControllerAnimated:YES completion:nil];
+    [self.hostView.connectionsTableView reloadData];
 }
 
 - (void)browserViewControllerWasCancelled:(MCBrowserViewController *)browserViewController {
     [self dismissViewControllerAnimated:YES completion:nil];
+    [self.hostView.connectionsTableView reloadData];
 }
 
 -(void)peerDidChangeStateWithNotification:(NSNotification *)notification{
@@ -67,6 +73,25 @@
             }
         }
     }
+}
+
+#pragma mark Table View methods
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.arrConnectedDevices.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *deviceCell = [tableView dequeueReusableCellWithIdentifier:@"deviceCell"];
+    if (!deviceCell) {
+        deviceCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"deviceCell"];
+        deviceCell.textLabel.text = self.arrConnectedDevices[indexPath.row];
+        deviceCell.selectionStyle = UITableViewCellSelectionStyleNone;
+    }
+    return deviceCell;
 }
 
 @end

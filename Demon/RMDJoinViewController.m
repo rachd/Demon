@@ -24,7 +24,6 @@
     
     [self.joinView.closeButton addTarget:self.delegate action:@selector(closeJoinView) forControlEvents:UIControlEventTouchUpInside];
     [self.joinView.connectButton addTarget:self action:@selector(connect) forControlEvents:UIControlEventTouchUpInside];
-    
 }
 
 - (void)connect {
