@@ -9,11 +9,18 @@
 #import "RMDRuleEntryViewController.h"
 #import "RMDRuleEntryView.h"
 
+@interface RMDRuleEntryViewController()
+
+@property (nonatomic, strong) RMDRuleEntryView *ruleView;
+
+@end
+
 @implementation RMDRuleEntryViewController
 
 - (void)viewDidLoad {
-    RMDRuleEntryView *ruleView = [[RMDRuleEntryView alloc] init];
-    self.view = ruleView;
+    self.ruleView = [[RMDRuleEntryView alloc] init];
+    self.view = self.ruleView;
 }
+
 
 @end

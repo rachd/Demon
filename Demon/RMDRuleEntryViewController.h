@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RMDRuleEntryViewController : UIViewController <UITextFieldDelegate>
+@interface RMDRuleEntryViewController : UIViewController
 
 @end

@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "RMDRuleEntryViewController.h"
 
-@interface RMDRuleEntryView : UIView
+@interface RMDRuleEntryView : UIView <UITextFieldDelegate>
 
 @property (nonatomic, strong) UITextField *ruleField;
 @property (nonatomic, weak) RMDRuleEntryViewController *ruleVC;

@@ -29,7 +29,7 @@
     [self addSubview:ruleLabel];
     
     self.ruleField = [[UITextField alloc] init];
-    self.ruleField.delegate = self.ruleVC;
+    self.ruleField.delegate = self;
     self.ruleField.translatesAutoresizingMaskIntoConstraints = NO;
     self.ruleField.borderStyle = UITextBorderStyleRoundedRect;
     [self addSubview:self.ruleField];
@@ -50,6 +50,15 @@
     [self addConstraints:vert];
     [self addConstraints:horiz1];
     [self addConstraints:horiz2];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return YES;
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    [self.ruleField endEditing:YES];
 }
 
 @end
