@@ -13,5 +13,6 @@
 
 @property (nonatomic, strong) UITextField *ruleField;
 @property (nonatomic, weak) RMDRuleEntryViewController *ruleVC;
+@property (nonatomic) NSInteger number;
 
 @end

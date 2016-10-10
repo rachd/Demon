@@ -90,7 +90,7 @@
         NSLog(@"%@", [error localizedDescription]);
     }
    
-    RMDRuleEntryViewController *ruleVC = [[RMDRuleEntryViewController alloc] init];
+    RMDRuleEntryViewController *ruleVC = [[RMDRuleEntryViewController alloc] initWithNumber:1];
     [self presentViewController:ruleVC animated:YES completion:nil];
 }
 

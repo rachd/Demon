@@ -34,8 +34,14 @@
     self.ruleField.borderStyle = UITextBorderStyleRoundedRect;
     [self addSubview:self.ruleField];
     
-    NSDictionary *viewsDictionary = @{@"ruleField": self.ruleField, @"ruleLabel": ruleLabel};
-    NSArray *vert = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-40-[ruleLabel(==40)]-40-[ruleField]-20-|"
+    UIButton *submitButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    [submitButton setTitle:@"Submit" forState:UIControlStateNormal];
+    submitButton.translatesAutoresizingMaskIntoConstraints = NO;
+    [submitButton addTarget:self.ruleVC action:@selector(submitRule) forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:submitButton];
+    
+    NSDictionary *viewsDictionary = @{@"ruleField": self.ruleField, @"ruleLabel": ruleLabel, @"ruleButton": submitButton};
+    NSArray *vert = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-40-[ruleLabel(==40)]-40-[ruleField]-20-[ruleButton]-20-|"
                                                             options:0
                                                             metrics:nil
                                                               views:viewsDictionary];
@@ -47,9 +53,14 @@
                                                               options:0
                                                               metrics:nil
                                                                 views:viewsDictionary];
+    NSArray *horiz3 = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[ruleButton]-|"
+                                                              options:0
+                                                              metrics:nil
+                                                                views:viewsDictionary];
     [self addConstraints:vert];
     [self addConstraints:horiz1];
     [self addConstraints:horiz2];
+    [self addConstraints:horiz3];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {

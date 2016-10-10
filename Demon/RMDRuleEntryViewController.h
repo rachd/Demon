@@ -10,4 +10,7 @@
 
 @interface RMDRuleEntryViewController : UIViewController
 
+- (instancetype)initWithNumber:(NSInteger)number;
+- (void)submitRule;
+
 @end

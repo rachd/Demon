@@ -7,6 +7,7 @@
 //
 
 #import "RMDConnectionManager.h"
+#import "RMDRule.h"
 
 @implementation RMDConnectionManager
 
@@ -54,17 +55,25 @@
     _advertiser = nil;
 }
 
+#pragma mark MCSession Delegate Methods
+
 -(void)session:(MCSession *)session didReceiveData:(NSData *)data fromPeer:(MCPeerID *)peerID {
     NSDictionary *dict = @{@"data": data,
                            @"peerID": peerID
                            };
+    NSString *message = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    NSLog(@"the message is: %@", message);
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"StartGameNotification"
-                                                        object:nil
-                                                     userInfo:dict];
+    if ([message isEqual: @"start"]) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"StartGameNotification"
+                                                            object:nil
+                                                          userInfo:dict];
+    } else {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"AddRuleNotification"
+                                                            object:nil
+                                                          userInfo:dict];
+    }
 }
-
-#pragma mark MCSession Delegate Methods
 
 -(void)session:(MCSession *)session peer:(MCPeerID *)peerID didChangeState:(MCSessionState)state{
     NSDictionary *dict = @{@"peerID": peerID,

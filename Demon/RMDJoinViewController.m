@@ -43,8 +43,7 @@
 }
 
 - (void)startGame {
-    NSLog(@"got the memo");
-    RMDRuleEntryViewController *ruleVC = [[RMDRuleEntryViewController alloc] init];
+    RMDRuleEntryViewController *ruleVC = [[RMDRuleEntryViewController alloc] initWithNumber:1];
     dispatch_async(dispatch_get_main_queue(), ^{
         [self presentViewController:ruleVC animated:YES completion:nil];
     });

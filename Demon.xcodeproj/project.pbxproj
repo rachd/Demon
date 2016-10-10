@@ -21,6 +21,7 @@
 		CC3D6B931D99E37200ADEDCF /* RMDRuleEntryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CC3D6B921D99E37200ADEDCF /* RMDRuleEntryViewController.m */; };
 		CC3D6B971D99E3AB00ADEDCF /* RMDRuleEntryView.m in Sources */ = {isa = PBXBuildFile; fileRef = CC3D6B961D99E3AB00ADEDCF /* RMDRuleEntryView.m */; };
 		CC6BBBAF1DA06AEA00409BAB /* MultipeerConnectivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC6BBBAE1DA06AEA00409BAB /* MultipeerConnectivity.framework */; };
+		CC6BBBE21DA9993300409BAB /* RMDRule.m in Sources */ = {isa = PBXBuildFile; fileRef = CC6BBBE11DA9993300409BAB /* RMDRule.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +51,8 @@
 		CC3D6B951D99E3AB00ADEDCF /* RMDRuleEntryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMDRuleEntryView.h; sourceTree = "<group>"; };
 		CC3D6B961D99E3AB00ADEDCF /* RMDRuleEntryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMDRuleEntryView.m; sourceTree = "<group>"; };
 		CC6BBBAE1DA06AEA00409BAB /* MultipeerConnectivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MultipeerConnectivity.framework; path = System/Library/Frameworks/MultipeerConnectivity.framework; sourceTree = SDKROOT; };
+		CC6BBBE01DA9993300409BAB /* RMDRule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMDRule.h; sourceTree = "<group>"; };
+		CC6BBBE11DA9993300409BAB /* RMDRule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMDRule.m; sourceTree = "<group>"; };
 		CCF661601D9E0CFA000F88F7 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -88,6 +91,7 @@
 				CC09813F1D8B75A500C2008F /* AppDelegate.h */,
 				CC0981401D8B75A500C2008F /* AppDelegate.m */,
 				CC3088D71D9E0988008D8376 /* Networking */,
+				CC6BBBDF1DA9972A00409BAB /* Model */,
 				CC3D6B941D99E37A00ADEDCF /* Rule Entry */,
 				CC3A9D331D8F48A8001736C9 /* Lobby */,
 				CC3A9D341D8F48BD001736C9 /* Host */,
@@ -159,6 +163,15 @@
 				CC3D6B921D99E37200ADEDCF /* RMDRuleEntryViewController.m */,
 			);
 			name = "Rule Entry";
+			sourceTree = "<group>";
+		};
+		CC6BBBDF1DA9972A00409BAB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CC6BBBE01DA9993300409BAB /* RMDRule.h */,
+				CC6BBBE11DA9993300409BAB /* RMDRule.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 		CCF6615F1D9E0CFA000F88F7 /* Frameworks */ = {
@@ -252,6 +265,7 @@
 				CC3A9D3B1D8F49BE001736C9 /* RMDJoinView.m in Sources */,
 				CC09813E1D8B75A500C2008F /* main.m in Sources */,
 				CC3A9D321D8F45DA001736C9 /* RMDLobbyView.m in Sources */,
+				CC6BBBE21DA9993300409BAB /* RMDRule.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

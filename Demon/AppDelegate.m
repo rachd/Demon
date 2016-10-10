@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "RMDLobbyViewController.h"
+#import "RMDRule.h"
 
 @interface AppDelegate ()
 
@@ -21,8 +22,20 @@
     RMDLobbyViewController *lobbyVC = [[RMDLobbyViewController alloc] init];
     [self.window setRootViewController:lobbyVC];
     [self.window makeKeyAndVisible];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(addRule)
+                                                 name:@"AddRuleNotification"
+                                               object:nil];
 
     return YES;
+}
+
+
+- (void)addRule {
+    NSLog(@"got a rule");
+    //[[RMDRule singletonRules] addRule:message];
+    //NSLog(@" after add %@", [[RMDRule singletonRules] allRules]);
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
